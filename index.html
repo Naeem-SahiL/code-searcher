@@ -17,7 +17,17 @@
 <body>
 
 <div class="container mt-3">
-  <h2>Search Codes</h2>
+    <div class="row">
+        <div class="col">
+            <h2>Search Codes</h2>
+        </div>
+        
+    </div>
+    <div class="row">
+            <div class="col"><p>Arrived: <span id="arrived">5</span></p></div>
+            <div class="col"><p>Remaining: <span id="rem">53</span></p></div>
+    </div>
+  
   
     <div class="mb-3 mt-3">
       <label for="email" class="form-label">Enter Code:</label>
@@ -40,10 +50,21 @@
   
 </div>
 <script>
+    var arrivedText = document.getElementById("arrived")
+    var remText = document.getElementById("rem")
 
+    var arrived = localStorage.getItem("arrived")
+    if(!arrived)
+    { 
+        arrived = 0
+        localStorage.setItem("arrived",arrived)
+    }
+    console.log(arrived)
     var list19 = {'Farwa Mahmood ,2019-CS-14': 71515, 'Rehmat ,2019-CS-12': 38994, 'Moizza,2019-CS-2': 28536, 'Maryam ,2019-CS-5': 58450, 'Mehreen,2019-CS-8': 40609, 'Sobia,2019-CS-9': 22942, 'Tehseen,2019-CS-22': 35591, 'Mazhar,2019-CS-35': 11865, 'Ameer ,2019-CS-28': 14180, 'Maimoon,2019-CS-42': 69072, 'Haider ,2019-CS-36': 87389, 'Hamza,2019-CS-29': 78849, 'Adil,2019-CS-20': 96588, 'Ahmad Zaheer ,2019-CS-23': 66649, 'Faizan Raza,2019-CS-51': 67978, 'Noor Fatima,2019-CS-18': 18368, 'Abubakar,2019-CS-48': 67359, 'Uswah Saeed,2019-CS-3': 12780, 'Qaiser,2019-CS-34': 11411, 'Umer Arshad,2019-CS-21': 25212, 'Umer Farooq,2019-CS-27': 98959, 'Talha Jaan,2019-CS-44': 20155, 'Usama ,2019-CS-46': 73463, 'Hassan Qayyum,2019-CS-43': 26878, 'Haris Khan,2019-CS-30': 28709, 'Section B,': 49505, 'Naba Ali,2019-CS-104': 16797, 'Maryam Saleem,2019-CS-203': 77907, 'Mujab Khan,2019-CS-140': 24917, 'Nimra Zahoor ,2019-CS-112': 85592, 'Sania Rashid,2019-CS-107': 93280, 'Muhammad Awais,2019-CS-127': 32037, 'Musham Malik,2019-CS-150': 62558, 'Habib Ur Rehman,2019-CS-141': 10176, 'Zainab ,2019-CS-110': 96569, 'Hassan Tahir,2019-CS-128': 65125, 'Aamir Ali,2019-CS-125': 35970, 'Muhammad Naeem,2019-CS-124': 62710, 'Mubashar Nouman,2019-CS-130': 19709, 'Muhammad Asif,2019-CS-122': 17979, 'Umar Tariq,2019-CS-148': 78543, 'Noroz,2019-CS-144': 96719, 'Muhammad Hamza,2019-CS-129': 77546, 'Misbah Sahar,2019-CS-111': 73879, 'Nouman Baig,2019-CS-151': 59226, 'Muhammad Mobeen,2019-CS-146': 28443, 'Zoha Mustafa,2019-CS-114': 55556, 'Areeba Khawar,2019-CS-109': 75287, 'Hadia Amir,2019-CS-115': 63172, 'Muhammad Imran,2019-CS-126': 59086, 'Sulaiman Bashir,2019-CS-136': 81322, 'Section C,': 82373, 'Mahnoor fatima,2019-cs-204': 35376, 'Hamna Masood ,2019-cs-210': 30466, 'Fatima Iftikhar ,2019-cs-208': 33192, 'Mariyam Mahaar ,2019-cs-216': 15546, 'Hafiza Ghousia Jawaid ,2019-cs-201': 73965, 'Zainab Fatima ,2019-cs-211': 40770, 'Mehak Asim ,2019-cs-209': 20574, 'Zoha Sohail ,2019-cs-213': 74236, 'Jawad Ahmad ,2019-cs-230': 74880, 'Hadia Shabbir,2019-cs-202': 80567, 'Abdullah Rasheed,2019-cs-246': 70207, 'Mamb,2019-cs-224': 95935, 'Zain Arshad,2019-cs-238': 87344, 'Usama Mushtaq,2019-cs-226': 93349, 'Asad Zahid,2019-cs-249': 18657, 'Talha Ashraf,2019-cs-239': 74316, 'Muhammad Nadeem,2019-cs-233': 83173, 'Abrar Khan,2019-cs-254': 34014, 'Ehtesham Haider,2019-cs-218': 61029, 'Abdul Hayan,2019-cs-237': 56707, 'Muhamamd Asif ,2019-cs-219': 28360, 'Muhammad Ikram,2019-cs-242': 39320, 'Sahar moueen,2019-cs-206': 68737, 'Safa amin,2019-cs-205': 45539, 'Hassaan Siddiqui ,2019-cs-220': 59735, 'Raza ,2019-cs-240': 25177, 'Hamza,2019cs229': 67540, 'usman ghani,2019cs243': 32772, 'wasif,2019cs235': 69759, 'zubair amin,2019cs234': 96271, 'moeez,2019r2018cs148': 84128, 'Furqan,2019cs225': 29896, 'mubina,2019cs212': 30917, 'faisal Saleem,2019cs222': 11008, 'Abu Hurrara,2019cs228': 50855, 'Awais,2019cs244': 17778, 'Abdullah Shahid,2019cs245': 56403};
     var list20 = {'Kashir,2020-CS-27': 312703, 'UmairAhmed,2020-CS-03': 605214, 'AbdulAhad,2020-CS-05': 685279, 'Mohid,2020-CS-44': 497034, 'HammadAnwer,2020-CS-40': 555672, 'Hasnat,2020-CS-42': 509233, 'Saad,2020-CS-41': 328264, 'Adeel,2020-CS-48': 230460, 'HassanHashmi,2020-CS-12': 597295, 'Rizwan,2020-CS-23': 678878, 'Haseeb,2020-CS-20': 240630, 'AttaulMohamin,2020-CS-40': 680264, 'HassanNisar,2020-CS-49': 573163, 'UmairManzoor,2020-CS-24': 312910, 'Tajammul,2020-CS-36': 141518, 'Roha,2020-CS-22': 134658, 'Maria,2020-CS-33': 283534, 'MahnoorMunawar,2020-CS-28': 251876, 'Areeba,2020-CS-17': 539960, 'Areej,2020-CS-06': 431307, 'Mubashra,2020-CS-16': 457232, 'MahnoorKhan,2020-CS-26': 573387, 'Hajra,2020-CS-15': 343411, 'Laiba,2020-CS-01': 683680, 'Safeeullah,2020-CS-13': 364953, 'Asad,2020-CS-10': 680294, 'Musawir,2020-CS-46': 709715, 'Akmal,2020-CS-50': 482948, 'Hameedullah,2020-CS-38': 102716, 'Abidullah,2020-cs-29': 501939, 'Moiz,2020-cs-19': 608259, 'Huzaifa,2020-cs-02': 708583};
     var i = 0;
+    var total = Object.getOwnPropertyNames(list19).length + Object.getOwnPropertyNames(list20).length
+    console.log(total)
     
     function submit()
     {
@@ -68,6 +89,7 @@
                 {
                     found = true
                     msg.innerHTML = "Found Attendee Name is  </br>  " + key
+                    arrived++
                     break
                 }
                 
@@ -82,6 +104,7 @@
                 {
                     found = true
                     msg.innerHTML = "Found Attendee Name is  </br> "+ key
+                    arrived++
                     break
                 }
                 
@@ -93,7 +116,16 @@
             msg.innerHTML = "Not Found"
 
         }
+        arrivedText.innerHTML = arrived
+        remText.innerHTML = total-arrived
+        localStorage.setItem("arrived",arrived)
+        
+        
     }
+    arrivedText.innerHTML = arrived
+    remText.innerHTML = total-arrived
+
+    
     
 </script>
 </body>
